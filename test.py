@@ -10,7 +10,7 @@ def _task():
 
 dag = DAG (
     dag_id="test",
-    schedule_interval="0 * * * *",
+    schedule_interval="10 * * * *",
     start_date=datetime(2023, 1, 1),
     catchup=False,
 )
