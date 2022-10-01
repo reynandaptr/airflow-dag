@@ -9,9 +9,10 @@ def _task():
     print(randint(1, 10))
 
 dag = DAG (
-    dag_id="test_dag",
+    dag_id="test",
     schedule_interval="0 * * * *",
     start_date=datetime(2023, 1, 1),
+    catchup=False,
 )
 
 task_start = DummyOperator(
@@ -20,14 +21,17 @@ task_start = DummyOperator(
 )
 
 taskA = PythonOperator(
+    dag=dag,
     task_id="task_A",
     python_callable=_task,
 )
 taskB = PythonOperator(
+    dag=dag,
     task_id="task_B",
     python_callable=_task,
 )
 taskC = PythonOperator(
+    dag=dag,
     task_id="task_C",
     python_callable=_task,
 )
